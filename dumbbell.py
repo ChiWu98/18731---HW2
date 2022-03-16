@@ -65,28 +65,24 @@ class DumbbellTopo(Topo):
     # bw_net for Bandwidth of network link
      # bw_host for Bandwidth of host link
     # delay for delay
-
-	hl1 = self.addHost( 'hl1' )
-        hl2 = self.addHost( 'hl2' )
-        a1 = self.addHost( 'a1' )
-        
-        hr1 = self.addHost( 'hr1' )
-        hr2 = self.addHost( 'hr2' )
-        a2 = self.addHost( 'a2' )
-
         s1 = self.addSwitch('s1')
         s2 = self.addSwitch('s2')
+        a1 = self.addHost('a1')
+        a2 = self.addHost('a2')
 
-        # Add links
-        self.addLink( hl1, s1, bw=bw_host, delay = delay, max_queue_size = maxq)
-        self.addLink( hl2, s1, bw=bw_host, delay = delay, max_queue_size = maxq)
-        self.addLink( a1, s1, bw=bw_host, delay = delay, max_queue_size = maxq)
 
-        self.addLink( hr1, s2, bw=bw_host, delay = delay, max_queue_size = maxq)
-        self.addLink( hr2, s2, bw=bw_host, delay = delay, max_queue_size = maxq)
-        self.addLink( a2, s2, bw=bw_host, delay = delay, max_queue_size = maxq)
-
-        self.addLink( s1, s2,bw=bw_net, delay = delay )	
+    # adding S1 dumbnell hosts
+        for h in range(n):
+            host = self.addHost('hl%s' % (h + 1))
+            self.addLink(host, s1, bw = bw_host,delay = delay, max_queue_size = maxq)
+        self.addLink(a1, s1, bw = bw_host,delay = delay, max_queue_size = maxq)
+    # adding S2 dumbnell hosts
+        for h in range(n):
+            host = self.addHost('hr%s' % (h + 1))
+            self.addLink(host, s2, bw = bw_host,delay = delay, max_queue_size = maxq)
+        self.addLink(a2, s2, bw = bw_host,delay = delay, max_queue_size = maxq)
+    
+        self.addLink(s1, s2,  bw = bw_net,delay = delay, max_queue_size = maxq)
 def bbnet():
     "Create network and run shrew  experiment"
     print "starting mininet ...."
