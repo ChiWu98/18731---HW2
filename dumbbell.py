@@ -69,21 +69,21 @@ class DumbbellTopo(Topo):
     # add 2 swtich for dumbbell
         s1 = self.addSwitch('s1')
         s2 = self.addSwitch('s2')
-        self.addLink(s1,s2, cls=TCLink, bw = bw_net,delay = delay)
+        self.addLink(s1,s2, bw = bw_net,delay = delay, max_queue_size = maxq)
         
         a1 = self.addHost('a1')
         a2 = self.addHost('a2')
-        self.addLink(a1, s1, cls=TCLink, bw = bw_host,delay = delay)
-        self.addLink(a2, s2, cls=TCLink, bw = bw_host,delay = delay)
+        self.addLink(a1, s1, bw = bw_host,delay = delay, max_queue_size = maxq)
+        self.addLink(a2, s2, bw = bw_host,delay = delay, max_queue_size = maxq)
     # adding S1 dumbnell hosts
     	for h in range(n):
             host = self.addHost('hl%s' % (h + 1))
-            self.addLink(host, s1, cls=TCLink, bw = bw_host,delay = delay)
+            self.addLink(host, s1, bw = bw_host,delay = delay, max_queue_size = maxq)
 
     # adding S2 dumbnell hosts
     	for h in range(n):
             host = self.addHost('hr%s' % (h + 1))
-            self.addLink(host, s2, cls=TCLink, bw = bw_host,delay = delay)
+            self.addLink(host, s2, bw = bw_host,delay = delay, max_queue_size = maxq)
 		
 	
 def bbnet():
