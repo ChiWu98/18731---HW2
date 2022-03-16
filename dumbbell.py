@@ -71,10 +71,6 @@ class DumbbellTopo(Topo):
         s2 = self.addSwitch('s2')
         self.addLink(s1,s2, bw = bw_net,delay = delay, max_queue_size = maxq)
         
-        a1 = self.addHost('a1')
-        a2 = self.addHost('a2')
-        self.addLink(a1, s1, bw = bw_host,delay = delay, max_queue_size = maxq)
-        self.addLink(a2, s2, bw = bw_host,delay = delay, max_queue_size = maxq)
     # adding S1 dumbnell hosts
     	for h in range(n):
             host = self.addHost('hl%s' % (h + 1))
@@ -85,7 +81,10 @@ class DumbbellTopo(Topo):
             host = self.addHost('hr%s' % (h + 1))
             self.addLink(host, s2, bw = bw_host,delay = delay, max_queue_size = maxq)
 		
-	
+        a1 = self.addHost('a1')
+        a2 = self.addHost('a2')
+        self.addLink(a1, s1, bw = bw_host,delay = delay, max_queue_size = maxq)
+        self.addLink(a2, s2, bw = bw_host,delay = delay, max_queue_size = maxq)	
 def bbnet():
     "Create network and run shrew  experiment"
     print "starting mininet ...."
