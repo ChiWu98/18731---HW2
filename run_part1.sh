@@ -7,7 +7,7 @@ echo "Start shrew experiment"
 sudo sysctl -w net.ipv4.tcp_congestion_control=reno
 sudo sysctl -w net.ipv4.tcp_min_tso_segs=1
 python dumbbell.py --bw-host 10 \
-                --bw-net 10 \
+                --bw-net 100 \
                 --delay 20 \
                 --n 2 
 
