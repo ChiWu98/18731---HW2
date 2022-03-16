@@ -99,6 +99,7 @@ def bbnet():
     net.pingAll()
 
     #TODO: Add yoour code to start long lived TCP flows 
+<<<<<<< HEAD
     
     hl1, hl2, hr1, hr2, a1, a2  = net.get('hl1', 'hl2','hr1', 'hr2','a1','a2')
     
@@ -108,6 +109,14 @@ def bbnet():
 
 
     a2.cmd("iperf -c 10.0.0.1 -p 5003  -t 500 -i 1 &")
+=======
+    hl1, hl2, hr1, hr2 = net.get('hl1', 'hl2','hr1', 'hr2')
+    
+    hl1.cmd("iperf -s -p 5001 -t 500 &")
+
+    hl2.cmd("iperf -s -p 5002 -t 500 &")
+    
+>>>>>>> 08c7f51ba12a7711d270171692984835361a305f
     hr1.cmd("iperf -c 10.0.0.3 -p 5001 -t 500 -i 1 &")
     hr2.cmd("iperf -c 10.0.0.4 -p 5002 -t 500 -i 1 &")
     #net.iperf( ( hl1, hr1 ), l4Type='TCP' , port = 5001)
