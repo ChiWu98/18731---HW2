@@ -107,21 +107,10 @@ def bbnet():
     #TODO: Add yoour code to start long lived TCP flows
     hl1, hl2, hr1, hr2, a1, a2 = net.get('hl1', 'hl2','hr1', 'hr2','a1','a2')
 
-    #TODO: Add yoour code to start long lived TCP flows 
     
-    hl1, hl2, hr1, hr2, a1, a2  = net.get('hl1', 'hl2','hr1', 'hr2','a1','a2')
     
     hl1.cmd("iperf -s -p 5001 -t 500 &")
     hl2.cmd("iperf -s -p 5002 -t 500 &")
-    a1.cmd("iperf -s -p 5003 -t 500 &")
-
-
-    a2.cmd("iperf -c 10.0.0.1 -p 5003  -t 500 -i 1 &")
-    hl1, hl2, hr1, hr2 = net.get('hl1', 'hl2','hr1', 'hr2')
-    
-    hl1.cmd("iperf -s -p 5001 -t 500 &")
-    hl2.cmd("iperf -s -p 5002 -t 500 &")
-    
     a1.cmd("iperf -s -p 5003 -t 500 &")
 
 
